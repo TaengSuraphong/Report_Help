@@ -18,7 +18,9 @@ const Maintenance = () => {
     ip: "",
     date: "",
     detail: "",
-    image: ""
+    image: "",
+    progress: "รอดำเนินการ",
+    staff: ""
   })
   
   const handleFileDetails = () => {
