@@ -107,7 +107,7 @@ const Dashboard = () => {
                     </td>
                     <td>{val.department}</td>
                     <td>{val.ip}</td>
-                    <td>{val.Date_Convert}</td>
+                    <td>{val.date}</td>
                     <td>{val.detail}</td>
                     <td>
                       {val.image ? (
