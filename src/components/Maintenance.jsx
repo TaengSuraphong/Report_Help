@@ -10,6 +10,7 @@ import Axios from "axios";
 import Footer from "./Footer";
 
 const Maintenance = () => {
+  const [ loading, setLoading ] = useState(false);
   const inputImgRef = useRef(null);
   const [ reportInfo, setReportInfo ] = useState({
     name: "",
@@ -42,6 +43,7 @@ const Maintenance = () => {
   const [getdata, setGetdata] = useState([]);
 
   const addReport = () => {
+    setLoading(true)
     Axios.post("https://report-help.netlify.app/api/create", {
       name: reportInfo.name,
       lastname: reportInfo.lastname,
@@ -74,6 +76,7 @@ const Maintenance = () => {
         image: ""
       })
       alert("แจ้งข้อมูลการแจ้งซ่อมสำเร็จ")
+      setLoading(false)
     })
   };
 
@@ -202,12 +205,22 @@ const Maintenance = () => {
           </div>
         </form>
         <div className=" mt-[3rem] flex justify-center items-center gap-[2rem]">
-          <button
-            onClick={addReport}
+          {
+            loading ?
+            <button
             className=" bg-green-600 py-[0.5rem] px-[1.5rem] text-[1.4rem] rounded-[5px] text-white"
           >
             บันทึก
           </button>
+          :
+          <button
+            
+          onClick={addReport}
+          className=" bg-green-600 py-[0.5rem] px-[1.5rem] text-[1.4rem] rounded-[5px] text-white"
+        >
+          บันทึก
+        </button>
+          }
           <button
             onClick={ () => {
               inputImgRef.current.value = ""
@@ -218,7 +231,9 @@ const Maintenance = () => {
                 ip: "",
                 date: "",
                 detail: "",
-                image: ""
+                image: "",
+                progress: "",
+                staff: ""
               })
             }}
             className=" bg-red-600 py-[0.5rem] px-[1.5rem] text-[1.4rem] rounded-[5px] text-white"
